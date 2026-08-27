@@ -250,19 +250,6 @@ not predict behaviour on an unseen topology.
 
 ---
 
-## Two negative results worth reporting
-
-**The LayerNorm ablation is marginal here.** MS4N vs MS4 reproduces the *direction* of the
-normalization effect reported for generic time-series classification, but not its magnitude:
-0.14 points of accuracy and 0.7 of MCC, with MS4 retaining the better specificity.
-
-**Diagonal SSMs do not beat input-dependent ones on this task.** Mamba-2 exceeds both MS4 variants on
-accuracy, F1, MCC and transfer at roughly 1.7× the parameters. A plausible reading is that the
-selective mechanism suits a signal whose discriminative content is a transient, whereas the reference
-benchmarks are dominated by smooth low-frequency structure. Confirming this would require inspecting
-whether `Δk` responds at fault inception — left to future work.
-
----
 
 ## Repository layout
 
@@ -289,29 +276,4 @@ whether `Δk` responds at fault inception — left to future work.
 
 ---
 
-## Limitations
 
-Results come from a **single seed on simulated data**, at a fixed window length and stride, and one
-configuration of the source dataset duplicates another. Since six of eight models lie within 0.005
-accuracy, **the in-distribution ranking is provisional** until repeated across seeds. The noise and
-transfer results, where gaps reach 0.08 and 0.18, are the firmer conclusions.
-
-## Future work
-
-- Repeat the comparison across seeds with confidence intervals
-- Extend from binary detection to fault-type classification and fault location
-- Evaluate the leading architectures on measured rather than simulated waveforms
-- Inspect whether Mamba-2's `Δk` actually responds at fault inception
-
-## Citation
-
-```bibtex
-@inproceedings{faultdetection2026,
-  title     = {A Comparative Analysis of Modern ML Models for Power Line
-               Fault Detection in Natural Disasters},
-  author    = {Author, First A. and Author, Second B. and Author, Third C.},
-  booktitle = {Proc. IEEE Conference},
-  year      = {2026},
-  address   = {Dhaka, Bangladesh}
-}
-```
