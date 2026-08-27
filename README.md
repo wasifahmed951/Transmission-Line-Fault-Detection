@@ -33,43 +33,6 @@ conditions, not from a leaderboard.
 
 ---
 
-## Why this benchmark exists
-
-The fault-recognition literature is still built almost entirely from recurrent and convolutional
-networks, while general time-series classification has moved on to structured state-space and
-learnable basis-function models. Two gaps motivated this work:
-
-1. **Architectural.** S4D-family models run as an `O(L log L)` convolution during training and revert
-   to `O(1)` per-step inference — exactly the regime a protection relay needs, since it must decide
-   within a fraction of a cycle under a fixed compute budget. None had been reported on
-   transmission-line fault waveforms.
-2. **Methodological.** Reported accuracies on simulated fault benchmarks routinely exceed 99 %, where
-   architecture differences fall inside run-to-run variation. Worse, these datasets contain
-   duplicated waveform segments, so a randomized split places identical samples in both partitions
-   and the score measures memorization rather than generalization.
-
----
-
-## Models benchmarked
-
-| Family | Models | Params |
-|---|---|---|
-| Diagonal state-space (S4D) | MS4, MS4N | 21.4 K, 21.5 K |
-| Input-dependent state-space | Mamba-2 | 36.9 K |
-| Recurrent / conv-recurrent | LSTM, LRCN | 52.0 K, 45.4 K |
-| Descriptor-based vector models | KAN, ANN, PSO-ELM | 31.3 K, 8.9 K, 8.2 K |
-
-MS4 and MS4N differ **only** by a single LayerNorm inside the block, so the pair is a controlled
-ablation of the normalization effect.
-
-The five sequence models consume the standardized window directly. The three vector models consume a
-**91-dimensional descriptor** per window: per-channel magnitude and dispersion statistics,
-waveform-shape measures, zero-crossing counts and normalized harmonic ratios, plus cross-phase terms —
-voltage and current unbalance ratios and the zero-sequence residuals `|Σφ iφ|`, `|Σφ vφ|`, which are
-the quantities that separate balanced from unbalanced faults.
-
----
-
 ## Dataset and leakage control
 
 Four configurations of a three-phase distributed transmission line, six channels each (three phase
