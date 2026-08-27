@@ -135,7 +135,7 @@ FAR = FP / (FP + TN)      false-alarm rate
 
 ### Detection performance at 0 dB
 
-![Fault detection performance at 0 dB](figures/fig1_metric_comparison.png)
+![Fault detection performance at 0 dB](outputs/fig1_metric_comparison.png)
 
 *Note the suppressed vertical scale — the full plot range spans 0.11, and every model except PSO-ELM
 lies within 0.006 of the others on accuracy.*
@@ -158,27 +158,27 @@ it. For a relay that trip rate is unusable.
 
 ### Confusion matrices
 
-![Confusion matrices](figures/fig2_confusion_matrices.png)
+![Confusion matrices](outputs/fig2_confusion_matrices.png)
 
 The informative cell is the upper right — false alarms on healthy windows. ANN raises 3, KAN 5, and
 PSO-ELM 125 of 424.
 
 ### ROC curves
 
-![ROC curves](figures/fig3_roc_curves.png)
+![ROC curves](outputs/fig3_roc_curves.png)
 
 All models exceed 0.993 AUC; the metric saturates and does not discriminate.
 
 ### Convergence
 
-![Training curves](figures/fig4_training_curves.png)
+![Training curves](outputs/fig4_training_curves.png)
 
 KAN and ANN converge fastest and to the lowest validation loss. Mamba-2's validation loss diverges
 after epoch ~7 while its macro-F1 plateaus — early stopping on macro-F1 restores the best checkpoint.
 
 ### Accuracy–complexity trade-off
 
-![Accuracy vs complexity](figures/fig5_accuracy_complexity.png)
+![Accuracy vs complexity](outputs/fig5_accuracy_complexity.png)
 
 Capacity does not buy accuracy here. ANN — the smallest neural model at 8,936 parameters and 9.1 s of
 training — is second on F1 and beats the LSTM, which is six times larger and five times slower. MS4N
@@ -189,7 +189,7 @@ modelling.
 
 ### Per-configuration behaviour
 
-![Per-configuration accuracy](figures/fig6_per_configuration.png)
+![Per-configuration accuracy](outputs/fig6_per_configuration.png)
 
 TL-2 is solved by every model (≥0.9996) and TL-1 nearly so. **All the variance lives in TL-4**, the
 source-end fault case, where accuracy ranges from 0.9462 (MS4) to 0.9964 (ANN) — a spread twenty
@@ -198,20 +198,20 @@ point, and the descriptor-based models handle this regime markedly better than t
 
 ### Multi-criteria comparison
 
-![Radar comparison](figures/fig7_radar.png)
+![Radar comparison](outputs/fig7_radar.png)
 
 Seven models overlap almost exactly; PSO-ELM collapses on specificity and MCC.
 
 ### PSO feature selection
 
-![PSO convergence](figures/fig8_pso_convergence.png)
+![PSO convergence](outputs/fig8_pso_convergence.png)
 
 The swarm converges to **39 of 91 descriptors**, with global-best fitness improving in discrete steps
 and flat after iteration 17.
 
 ### Noise robustness
 
-![Noise robustness](figures/fig9_snr_sweep.png)
+![Noise robustness](outputs/fig9_snr_sweep.png)
 
 On clean data six of seven models score exactly 1.000 macro-F1 — the noiseless benchmark is saturated
 and cannot rank architectures. Separation emerges below 10 dB and widens monotonically.
@@ -232,7 +232,7 @@ architectural complexity would predict, and it is invisible above 10 dB.**
 
 ### Cross-configuration transfer
 
-![Cross-configuration transfer](figures/fig10_transfer.png)
+![Cross-configuration transfer](outputs/fig10_transfer.png)
 
 Each model is trained on three configurations and evaluated on the fourth, held out entirely.
 
@@ -269,7 +269,7 @@ whether `Δk` responds at fault inception — left to future work.
 ```
 .
 ├── README.md
-├── figures/
+├── outputs/
 │   ├── fig1_metric_comparison.png     # accuracy / precision / recall / F1 at 0 dB
 │   ├── fig2_confusion_matrices.png    # binary confusion matrices, test set
 │   ├── fig3_roc_curves.png            # ROC, fault vs. no-fault
