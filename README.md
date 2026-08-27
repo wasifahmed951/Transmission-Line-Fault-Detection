@@ -212,32 +212,3 @@ the best model (LRCN) reaching 0.6253 and ANN falling to 0.4456. **The descripto
 lead in distribution transfer worst** — the clearest evidence here that in-distribution accuracy does
 not predict behaviour on an unseen topology.
 
----
-
-
-## Repository layout
-
-```
-.
-├── README.md
-├── outputs/
-│   ├── fig1_metric_comparison.png     # accuracy / precision / recall / F1 at 0 dB
-│   ├── fig2_confusion_matrices.png    # binary confusion matrices, test set
-│   ├── fig3_roc_curves.png            # ROC, fault vs. no-fault
-│   ├── fig4_training_curves.png       # validation loss and macro-F1 per epoch
-│   ├── fig5_accuracy_complexity.png   # F1 vs. parameters, bubble area ∝ train time
-│   ├── fig6_per_configuration.png     # per-configuration accuracy heatmap
-│   ├── fig7_radar.png                 # multi-criteria radar
-│   ├── fig8_pso_convergence.png       # PSO global-best fitness
-│   ├── fig9_snr_sweep.png             # macro-F1 vs. SNR
-│   └── fig10_transfer.png             # macro-F1 on a held-out configuration
-└── results/
-    ├── results_fault_detection.csv    # full metric set at 0 dB + params + train time
-    ├── results_per_configuration.csv  # accuracy by TL-1 … TL-4
-    ├── results_snr_sweep.csv          # macro-F1 across the SNR sweep
-    └── results_transfer.csv           # macro-F1 per held-out configuration
-```
-
----
-
-
