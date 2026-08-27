@@ -10,7 +10,6 @@ Structured state-space models (MS4 / MS4N), an input-dependent state-space model
 Kolmogorov–Arnold Network are applied to transmission-line fault waveforms here for the first time,
 to the authors' knowledge.
 
-*Department of Electrical and Electronic Engineering, American International University-Bangladesh (AIUB)*
 
 ---
 
@@ -81,6 +80,8 @@ voltages, three phase currents):
 
 Sampling is ≈8.3 kHz for TL-1/TL-3/TL-4 and 1.5 kHz for TL-2. Eleven original labels (one healthy,
 ten fault types) are mapped to a binary target.
+
+https://doi.org/10.6084/m9.figshare.30615710
 
 **Data-integrity screening happens before any modelling**, because three properties of these records
 silently inflate reported accuracy:
